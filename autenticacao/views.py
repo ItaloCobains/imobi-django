@@ -42,7 +42,7 @@ def logar(request):
             return redirect('/')
         return render(request, 'logar.html')
 
-    elif request.method.method == 'POST':
+    elif request.method == 'POST':
         username = request.POST.get('username')
         senha = request.POST.get('senha')
 
@@ -53,7 +53,10 @@ def logar(request):
             return redirect('/auth/logar')
         else:
             auth.login(request, usuario)
-            return redirect('')
+            return redirect('/')
 
+def sair(requests):
+    auth.logout(requests)
+    return redirect('/auth/logar')
 
         
